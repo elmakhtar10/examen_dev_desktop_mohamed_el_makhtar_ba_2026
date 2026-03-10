@@ -47,9 +47,9 @@ public class PatientRepositoryImpl implements IPatientRepository {
     @Override
     public List<Patient> searchByName(String name) {
         TypedQuery<Patient> query = em.createQuery(
-                "SELECT p FROM Patient p WHERE LOWER(p.nom) LIKE :kw OR LOWER(p.prenom) LIKE :kw",
+                "SELECT p FROM Patient p WHERE LOWER(p.nom) LIKE :name OR LOWER(p.prenom) LIKE :name",
                 Patient.class);
-        query.setParameter("kw", "%" + name.toLowerCase() + "%");
+        query.setParameter("name", "%" + name.toLowerCase() + "%");
         return query.getResultList();
     }
 }
