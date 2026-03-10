@@ -22,5 +22,6 @@
         <Button text="Rendez-vous" onAction="#onRendezVous"/>
         <Button text="Consultations" onAction="#onConsultations"/>
         <Button text="Factures" onAction="#onFactures"/>
+        <Button fx:id="usersButton" text="Utilisateurs" onAction="#onUsers"/>
     </HBox>
 </VBox>

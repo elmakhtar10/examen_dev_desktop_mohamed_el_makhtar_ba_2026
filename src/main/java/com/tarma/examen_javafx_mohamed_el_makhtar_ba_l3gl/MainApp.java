@@ -1,6 +1,7 @@
 package com.tarma.examen_javafx_mohamed_el_makhtar_ba_l3gl;
 
 import com.tarma.examen_javafx_mohamed_el_makhtar_ba_l3gl.controller.LoginController;
+import com.tarma.examen_javafx_mohamed_el_makhtar_ba_l3gl.util.PasswordUtils;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -21,6 +22,8 @@ public class MainApp extends Application {
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
+
+//        System.out.println(PasswordUtils.hashPassword("passer123"));
     }
 
     public static void main(String[] args) {

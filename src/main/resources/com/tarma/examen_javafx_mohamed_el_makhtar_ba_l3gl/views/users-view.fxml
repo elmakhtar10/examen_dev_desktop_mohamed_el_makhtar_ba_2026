@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17.0.2"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.tarma.examen_javafx_mohamed_el_makhtar_ba_l3gl.controller.UsersController"
+      alignment="CENTER"
+      spacing="10">
+    <padding>
+        <Insets top="20" right="40" bottom="20" left="40"/>
+    </padding>
+
+    <Label text="Creer un utilisateur" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+    <TextField fx:id="nomField" promptText="Nom" maxWidth="300"/>
+    <TextField fx:id="prenomField" promptText="Prenom" maxWidth="300"/>
+    <TextField fx:id="loginField" promptText="Login" maxWidth="300"/>
+    <PasswordField fx:id="passwordField" promptText="Mot de passe" maxWidth="300"/>
+
+    <ComboBox fx:id="roleCombo" promptText="Role" maxWidth="300"/>
+
+    <Button text="Creer" onAction="#onCreate" maxWidth="300"/>
+</VBox>

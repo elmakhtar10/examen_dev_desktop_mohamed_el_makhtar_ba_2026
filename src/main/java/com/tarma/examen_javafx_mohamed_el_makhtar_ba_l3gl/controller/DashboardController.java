@@ -1,17 +1,20 @@
 package com.tarma.examen_javafx_mohamed_el_makhtar_ba_l3gl.controller;
 
+import com.tarma.examen_javafx_mohamed_el_makhtar_ba_l3gl.model.Role;
 import com.tarma.examen_javafx_mohamed_el_makhtar_ba_l3gl.model.Utilisateur;
 import com.tarma.examen_javafx_mohamed_el_makhtar_ba_l3gl.service.ConsultationService;
 import com.tarma.examen_javafx_mohamed_el_makhtar_ba_l3gl.service.FactureService;
 import com.tarma.examen_javafx_mohamed_el_makhtar_ba_l3gl.service.MedecinService;
 import com.tarma.examen_javafx_mohamed_el_makhtar_ba_l3gl.service.PatientService;
 import com.tarma.examen_javafx_mohamed_el_makhtar_ba_l3gl.service.RendezVousService;
+import com.tarma.examen_javafx_mohamed_el_makhtar_ba_l3gl.service.UtilisateurService;
 import jakarta.persistence.EntityManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -28,6 +31,10 @@ public class DashboardController {
     private RendezVousService rendezVousService;
     private ConsultationService consultationService;
     private FactureService factureService;
+    private UtilisateurService utilisateurService;
+
+    @FXML
+    private Button usersButton;
 
     public void setContext(Stage stage, EntityManager em, Utilisateur utilisateurConnecte) {
         this.stage = stage;
@@ -39,6 +46,14 @@ public class DashboardController {
         this.rendezVousService = new RendezVousService(em);
         this.consultationService = new ConsultationService(em);
         this.factureService = new FactureService(em);
+        this.utilisateurService = new UtilisateurService(em);
+
+        boolean isAdmin = utilisateurConnecte != null && utilisateurConnecte.getRole() == Role.ADMIN;
+        if (usersButton != null) {
+            usersButton.setDisable(!isAdmin);
+            usersButton.setVisible(isAdmin);
+            usersButton.setManaged(isAdmin);
+        }
     }
 
     @FXML
@@ -98,6 +113,26 @@ public class DashboardController {
             openDialog("Gestion des factures", scene);
         } catch (IOException e) {
             showError("Erreur lors du chargement des factures : " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void onUsers(ActionEvent event) {
+        boolean isAdmin = utilisateurConnecte != null && utilisateurConnecte.getRole() == Role.ADMIN;
+        if (!isAdmin) {
+            showError("Acces reserve aux administrateurs.");
+            return;
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                    "/com/tarma/examen_javafx_mohamed_el_makhtar_ba_l3gl/views/users-view.fxml"));
+            Scene scene = new Scene(loader.load(), 600, 450);
+            UsersController controller = loader.getController();
+            controller.setContext(em);
+
+            openDialog("Creer utilisateur", scene);
+        } catch (IOException e) {
+            showError("Erreur lors du chargement de la creation utilisateur : " + e.getMessage());
         }
     }
 

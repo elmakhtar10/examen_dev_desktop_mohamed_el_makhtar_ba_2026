@@ -16,8 +16,7 @@ public class AuthService {
     }
 
     public boolean login(String login, String motDePasseClair) {
-        String hash = motDePasseClair;
-//        String hash = PasswordUtils.hashPassword(motDePasseClair);
+        String hash = PasswordUtils.hashPassword(motDePasseClair);
         TypedQuery<Utilisateur> query = em.createQuery(
                 "SELECT u FROM Utilisateur u WHERE u.login = :login AND u.motDePasseHash = :hash",
                 Utilisateur.class
