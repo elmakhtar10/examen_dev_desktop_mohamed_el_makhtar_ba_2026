@@ -33,7 +33,7 @@ public class ConsultationRepositoryImpl implements IConsultationRepository {
     @Override
     public List<Consultation> findAll() {
         TypedQuery<Consultation> query = em.createQuery(
-                "SELECT c FROM Consultation c ORDER BY c.date DESC", Consultation.class);
+                "SELECT c FROM Consultation c JOIN c.medecin m JOIN c.patient p ORDER BY c.date DESC", Consultation.class);
         return query.getResultList();
     }
 }

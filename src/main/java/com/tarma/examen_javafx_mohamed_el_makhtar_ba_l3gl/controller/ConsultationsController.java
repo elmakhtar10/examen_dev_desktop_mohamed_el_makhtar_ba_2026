@@ -19,6 +19,7 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -70,11 +71,11 @@ public class ConsultationsController {
     @FXML
     private void initialize() {
         dateColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(
-                data.getValue().getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))));
+                formatDate(data.getValue().getDate())));
         patientColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(
-                data.getValue().getPatient().getNom() + " " + data.getValue().getPatient().getPrenom()));
+                formatPatient(data.getValue().getPatient())));
         medecinColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(
-                data.getValue().getMedecin().getNom() + " " + data.getValue().getMedecin().getPrenom()));
+                formatMedecin(data.getValue().getMedecin())));
 
         consultationsTable.getSelectionModel().selectedItemProperty().addListener((obs, oldV, newV) -> {
             if (newV != null) {
@@ -238,8 +239,8 @@ public class ConsultationsController {
                 if (empty || item == null) {
                     setText(null);
                 } else {
-                    String text = item.getDateHeure().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
-                            + " - " + item.getPatient().getNom() + " " + item.getPatient().getPrenom();
+                    String text = formatDateTime(item.getDateHeure())
+                            + " - " + formatPatient(item.getPatient());
                     setText(text);
                 }
             }
@@ -251,14 +252,41 @@ public class ConsultationsController {
                 if (empty || item == null) {
                     setText(null);
                 } else {
-                    String text = item.getDateHeure().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
-                            + " - " + item.getPatient().getNom() + " " + item.getPatient().getPrenom();
+                    String text = formatDateTime(item.getDateHeure())
+                            + " - " + formatPatient(item.getPatient());
                     setText(text);
                 }
             }
         });
     }
 
+    private String formatDate(LocalDate date) {
+        if (date == null) {
+            return "";
+        }
+        return date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    }
+
+    private String formatDateTime(LocalDateTime dateTime) {
+        if (dateTime == null) {
+            return "";
+        }
+        return dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+    }
+
+    private String formatPatient(Patient patient) {
+        if (patient == null) {
+            return "";
+        }
+        return patient.getNom() + " " + patient.getPrenom();
+    }
+
+    private String formatMedecin(Medecin medecin) {
+        if (medecin == null) {
+            return "";
+        }
+        return medecin.getNom() + " " + medecin.getPrenom();
+    }
     private void showError(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);

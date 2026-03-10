@@ -32,7 +32,7 @@ public class FactureRepositoryImpl implements IFactureRepository {
 
     @Override
     public List<Facture> findAll() {
-        TypedQuery<Facture> query = em.createQuery("SELECT f FROM Facture f", Facture.class);
+        TypedQuery<Facture> query = em.createQuery("SELECT f FROM Facture f JOIN f.consultation c JOIN c.patient p", Facture.class);
         return query.getResultList();
     }
 }

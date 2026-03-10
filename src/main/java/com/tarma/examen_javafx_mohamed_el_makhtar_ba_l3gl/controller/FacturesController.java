@@ -15,6 +15,7 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class FacturesController {
@@ -55,10 +56,9 @@ public class FacturesController {
     @FXML
     private void initialize() {
         patientColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(
-                data.getValue().getConsultation().getPatient().getNom() + " "
-                        + data.getValue().getConsultation().getPatient().getPrenom()));
+                formatPatientFromConsultation(data.getValue().getConsultation())));
         dateColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(
-                data.getValue().getConsultation().getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))));
+                formatDateFromConsultation(data.getValue().getConsultation())));
         montantColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(
                 data.getValue().getMontantTotal().toPlainString()));
         statutColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(
@@ -136,8 +136,8 @@ public class FacturesController {
                 if (empty || item == null) {
                     setText(null);
                 } else {
-                    String text = item.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-                            + " - " + item.getPatient().getNom() + " " + item.getPatient().getPrenom();
+                    String text = formatDate(item.getDate())
+                            + " - " + formatPatient(item.getPatient());
                     setText(text);
                 }
             }
@@ -149,14 +149,41 @@ public class FacturesController {
                 if (empty || item == null) {
                     setText(null);
                 } else {
-                    String text = item.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-                            + " - " + item.getPatient().getNom() + " " + item.getPatient().getPrenom();
+                    String text = formatDate(item.getDate())
+                            + " - " + formatPatient(item.getPatient());
                     setText(text);
                 }
             }
         });
     }
 
+    private String formatDate(LocalDate date) {
+        if (date == null) {
+            return "";
+        }
+        return date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    }
+
+    private String formatPatient(com.tarma.examen_javafx_mohamed_el_makhtar_ba_l3gl.model.Patient patient) {
+        if (patient == null) {
+            return "";
+        }
+        return patient.getNom() + " " + patient.getPrenom();
+    }
+
+    private String formatDateFromConsultation(Consultation consultation) {
+        if (consultation == null) {
+            return "";
+        }
+        return formatDate(consultation.getDate());
+    }
+
+    private String formatPatientFromConsultation(Consultation consultation) {
+        if (consultation == null) {
+            return "";
+        }
+        return formatPatient(consultation.getPatient());
+    }
     private void showError(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);
