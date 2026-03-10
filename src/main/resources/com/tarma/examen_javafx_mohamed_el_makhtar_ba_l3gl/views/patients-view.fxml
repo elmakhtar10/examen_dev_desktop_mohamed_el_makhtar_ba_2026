@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.tarma.examen_javafx_mohamed_el_makhtar_ba_l3gl.controller.PatientsController">
+
+    <top>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Label text="Gestion des patients" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+            <HBox spacing="10">
+                <TextField fx:id="searchField" promptText="Rechercher par nom ou prenom" HBox.hgrow="ALWAYS"/>
+                <Button text="Rechercher" onAction="#onSearch"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <TableView fx:id="patientsTable">
+            <columns>
+                <TableColumn fx:id="nomColumn" text="Nom" prefWidth="160"/>
+                <TableColumn fx:id="prenomColumn" text="Prenom" prefWidth="160"/>
+                <TableColumn fx:id="dateNaissanceColumn" text="Date naissance" prefWidth="140"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <GridPane hgap="10" vgap="8">
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT" prefWidth="140"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                </rowConstraints>
+                <children>
+                    <Label text="Nom :" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="nomField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="Prenom :" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="prenomField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                    <Label text="Date naissance :" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <DatePicker fx:id="dateNaissancePicker" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                    <Label text="Sexe :" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="sexeCombo" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                    <Label text="Telephone :" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                    <TextField fx:id="telephoneField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                    <Label text="Adresse :" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                    <TextField fx:id="adresseField" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+                    <Label text="Groupe sanguin :" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                    <TextField fx:id="groupeSanguinField" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+                    <Label text="Antecedents :" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+                    <TextArea fx:id="antecedentsArea" prefRowCount="2" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+                </children>
+            </GridPane>
+
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Button text="Enregistrer / Mettre a jour" onAction="#onSave"/>
+                <Button text="Supprimer" onAction="#onDelete"/>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>

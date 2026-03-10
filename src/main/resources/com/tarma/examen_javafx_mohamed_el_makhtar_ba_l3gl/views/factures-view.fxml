@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.tarma.examen_javafx_mohamed_el_makhtar_ba_l3gl.controller.FacturesController">
+
+    <top>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Label text="Gestion des factures" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+        </VBox>
+    </top>
+
+    <center>
+        <TableView fx:id="facturesTable">
+            <columns>
+                <TableColumn fx:id="patientColumn" text="Patient" prefWidth="240"/>
+                <TableColumn fx:id="dateColumn" text="Date" prefWidth="120"/>
+                <TableColumn fx:id="montantColumn" text="Montant" prefWidth="120"/>
+                <TableColumn fx:id="statutColumn" text="Statut" prefWidth="120"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <GridPane hgap="10" vgap="8">
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT" prefWidth="160"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                </rowConstraints>
+                <children>
+                    <Label text="Consultation :" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="consultationCombo" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="Montant total :" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="montantField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                    <Label text="Mode paiement :" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="modePaiementCombo" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                    <Label text="Statut :" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="statutCombo" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                </children>
+            </GridPane>
+
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Button text="Generer / Mettre a jour" onAction="#onGenerer"/>
+                <Button text="Exporter PDF" onAction="#onExporterPdf"/>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>

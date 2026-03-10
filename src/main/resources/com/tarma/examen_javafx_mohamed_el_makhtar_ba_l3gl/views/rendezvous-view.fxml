@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.tarma.examen_javafx_mohamed_el_makhtar_ba_l3gl.controller.RendezVousController">
+
+    <top>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Label text="Gestion des rendez-vous" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Date :"/>
+                <DatePicker fx:id="filtreDatePicker"/>
+                <Label text="Medecin :"/>
+                <ComboBox fx:id="filtreMedecinCombo" prefWidth="220"/>
+                <Button text="Filtrer" onAction="#onFiltrer"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <TableView fx:id="rendezVousTable">
+            <columns>
+                <TableColumn fx:id="patientColumn" text="Patient" prefWidth="200"/>
+                <TableColumn fx:id="medecinColumn" text="Medecin" prefWidth="200"/>
+                <TableColumn fx:id="dateHeureColumn" text="Date/Heure" prefWidth="160"/>
+                <TableColumn fx:id="statutColumn" text="Statut" prefWidth="120"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <GridPane hgap="10" vgap="8">
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT" prefWidth="140"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                </rowConstraints>
+                <children>
+                    <Label text="Date :" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <DatePicker fx:id="datePicker" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="Heure :" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <HBox spacing="10" GridPane.rowIndex="1" GridPane.columnIndex="1">
+                        <Spinner fx:id="heureSpinner" prefWidth="80"/>
+                        <Spinner fx:id="minuteSpinner" prefWidth="80"/>
+                    </HBox>
+
+                    <Label text="Patient :" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="patientCombo" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                    <Label text="Medecin :" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="medecinCombo" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                    <Label text="Statut :" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="statutCombo" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                </children>
+            </GridPane>
+
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Button text="Planifier / Modifier" onAction="#onPlanifier"/>
+                <Button text="Annuler" onAction="#onAnnuler"/>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>

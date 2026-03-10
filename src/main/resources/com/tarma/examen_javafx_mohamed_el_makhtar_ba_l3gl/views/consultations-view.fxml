@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.tarma.examen_javafx_mohamed_el_makhtar_ba_l3gl.controller.ConsultationsController">
+
+    <top>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Label text="Gestion des consultations" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+        </VBox>
+    </top>
+
+    <center>
+        <TableView fx:id="consultationsTable">
+            <columns>
+                <TableColumn fx:id="dateColumn" text="Date" prefWidth="120"/>
+                <TableColumn fx:id="patientColumn" text="Patient" prefWidth="220"/>
+                <TableColumn fx:id="medecinColumn" text="Medecin" prefWidth="220"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <GridPane hgap="10" vgap="8">
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT" prefWidth="160"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                </rowConstraints>
+                <children>
+                    <Label text="Date :" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <DatePicker fx:id="datePicker" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="Patient :" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="patientCombo" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                    <Label text="Medecin :" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="medecinCombo" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                    <Label text="Rendez-vous :" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="rendezVousCombo" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                    <Label text="Diagnostic :" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                    <TextArea fx:id="diagnosticArea" prefRowCount="2" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                    <Label text="Observations :" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                    <TextArea fx:id="observationsArea" prefRowCount="2" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+                    <Label text="Prescription :" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                    <TextArea fx:id="prescriptionArea" prefRowCount="2" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+                </children>
+            </GridPane>
+
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Button text="Enregistrer la consultation" onAction="#onEnregistrer"/>
+                <Button text="Exporter ordonnance" onAction="#onExporterOrdonnance"/>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>
