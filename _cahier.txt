@@ -1,53 +1,0 @@
-Système de Gestion d'une Clinique Médicale
-1. Contexte
-Dans le cadre du module de Génie Logiciel, il vous est demandé de concevoir et développer une application desktop permettant la gestion d'une clinique médicale privée. L'application devra permettre de gérer les patients, les rendez-vous, les consultations et la facturation, tout en respectant les bonnes pratiques d'architecture logicielle. Ce projet a pour objectif d'évaluer vos compétences en conception orientée objet, en architecture logicielle, en persistance des données et en développement d'interfaces graphiques modernes.
-2. Objectifs Pédagogiques
-À travers ce projet, l'étudiant devra démontrer sa capacité à :  Concevoir une application orientée objet structurée  Appliquer les principes SOLID  Respecter le principe DRY  Utiliser JavaFX pour le développement de l'interface graphique  Implémenter la persistance des données avec JPA (Hibernate)  Implémenter un mécanisme d'authentification sécurisé (mot de passe chiffré)  Générer des documents PDF dynamiques  Concevoir un diagramme de classes UML cohérent
-3. Exigences Fonctionnelles 3.1 Authentification
-L'application doit comporter un système d'authentification sécurisé :
-
- Interface de connexion  Gestion des rôles :
- ADMIN  MEDECIN  RECEPTIONNISTE  Stockage des mots de passe chiffrés (hashage obligatoire)  Refus d'accès en cas d'identifiants incorrects  Gestion simple de session utilisateur (créer une classe SessionUtilisateur avec les informations de l'utilisateur comme des constantes)
-3.2 Gestion des Patients
-Le système doit permettre :  Ajouter un patient  Modifier les informations d'un patient  Supprimer un patient  Rechercher un patient  Afficher la liste des patients
-Informations minimales d'un patient : (Identifiant,Nom,Prénom,Date de naissance,Sexe,Téléphone,Adresse,Groupe sanguin,Antécédents médicaux
-3.3 Gestion des Rendez-vous
-Le système doit permettre :  Planifier un rendez-vous  Modifier un rendez-vous  Annuler un rendez-vous  Afficher les rendez-vous du jour  Filtrer les rendez-vous par médecin (optionnel mais + 2)
-
-Contraintes métier :
- Un médecin ne peut pas avoir deux rendez-vous au même horaire.  Un rendez-vous est associé à un patient et à un médecin.  Statut d'un rendez-vous :
- PROGRAMMÉ  ANNULÉ  TERMINÉ
-3.4 Gestion des Consultations
-Le système doit permettre :
- Enregistrer une consultation  Associer une consultation à :
- Un patient  Un médecin  Un rendez-vous  Ajouter :  Diagnostic  Observations  Prescription
-3.5 Gestion de la Facturation
-Le système doit permettre :
- Générer une facture après une consultation  Calculer le montant total  Enregistrer le mode de paiement  Gérer le statut de paiement :
- PAYÉ  NON PAYÉ  Consulter l'historique des factures
-
-4. Génération de Documents PDF
-L'application doit permettre la génération de : 1. Ordonnance médicale 2. Facture 3. (Bonus) Rapport journalier
-Chaque document PDF doit contenir :  Logo de la clinique  Informations du patient  Date  Mise en forme professionnelle (optionnel mais + 2)
-5. Exigences Techniques
-5.1 Technologies Obligatoires
- Java >=17 ou version compatible  JavaFX  JPA (Hibernate)  Base de données : MySQL  Bibliothèque de génération PDF (au choix)
-5.2 Architecture
-L'application doit respecter une architecture en couches :  Couche Présentation (Controller + Views) (JavaFX)  Couche Service (Logique métier)  Couche Repository (Accès aux données)  Couche Modèle (Entités JPA)  Couche Utilitaire (PDF, sécurité, etc.)
-
-Le respect des principes SOLID est obligatoire.
-5.3 Sécurité
- Les mots de passe doivent être stockés sous forme hashée.  Aucune donnée sensible ne doit être enregistrée en clair.  Validation des champs obligatoire.
-6. UML
-Les étudiants doivent fournir :  Un diagramme de classes complet incluant :  Entités  Relations  Énumérations
-Le diagramme doit être cohérent avec l'implémentation finale.
-7. Livrables
-À rendre avant la date limite : 1. Lien GitHub public contenant : a. Code source complet b. README (instructions d'installation et d'exécution) 2. Diagramme de classes (format PDF ou image) 3. Une courte video demo
-8. Durée du Projet
-
-Durée totale : 10 jours Aucun retard ne sera accepté sans justification officielle.
-Important
- Le plagiat est strictement interdit.  Chaque groupe (ou étudiant) doit produire un travail original.  Une démonstration orale pourra être organisée.  Pour la conception vous pouvez le faire en groupe de 2 mais le développement du
-logiciel c'est individuel
-
-
