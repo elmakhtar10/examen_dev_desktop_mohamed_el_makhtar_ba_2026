@@ -40,15 +40,13 @@ com.tarma.examen_javafx_mohamed_el_makhtar_ba_l3gl.MainApp
 ## Creer un utilisateur admin (obligatoire)
 Le mot de passe est **hash SHA-256**.
 
-### 1) Generer le hash (PowerShell)
-```powershell
-$pwd = "admin123"
-$bytes = [System.Text.Encoding]::UTF8.GetBytes($pwd)
-$hash = [System.Security.Cryptography.SHA256]::Create().ComputeHash($bytes)
-($hash | ForEach-Object { $_.ToString("x2") }) -join ""
+### Generer le hash (Java)
+Dans un `main` temporaire, executer :
+```java
+System.out.println(PasswordUtils.hashPassword("passer123"));
 ```
 
-### 2) Inserer l'admin en base
+### Inserer l'admin en base
 Remplacer `<HASH_ICI>` par le hash genere :
 ```sql
 INSERT INTO Utilisateur
@@ -59,7 +57,7 @@ VALUES
 
 Ensuite se connecter avec :
 - **login** : `admin`
-- **mot de passe** : celui qui a ete hashe (ex: `admin123`)
+- **mot de passe** : celui qui a ete hashe (ex: `passer123`)
 
 ## Fonctionnalites
 - Authentification par roles (ADMIN / MEDECIN / RECEPTIONNISTE)
